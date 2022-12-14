@@ -1,0 +1,13 @@
+<h1>Bienvenido {{{ name }}} y tienes {{{ age }}}</h1>
+<p>A continuación los usuarios que está registrados</p>
+
+<ul>
+    {{#each users}}
+        <details>
+            <summary>{{{ name }}}</summary>
+            <li>Edad: {{{ age }}}</li>
+            <li>Correo: {{{ email }}}</li>
+            <li>Telefono: {{{ phone }}}</li>
+        </details>
+    {{/each}}
+</ul>

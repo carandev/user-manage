@@ -1,6 +1,7 @@
 import express from 'express'
 import { engine } from 'express-handlebars'
 import bodyParser from 'body-parser'
+import connection from './database.js'
 
 const app = express()
 
@@ -11,9 +12,18 @@ app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
 app.set('views', './views')
 
-const users = []
-
 app.get('/', (request, response) => {
+  const query = 'SELECT * FROM users'
+  const users = []
+
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.log(error)
+    } else {
+      users.push(...results)
+    }
+  })
+
   response.render('index', { users })
 })
 
@@ -22,9 +32,15 @@ app.get('/user/create', (request, response) => {
 })
 
 app.post('/user/create', (request, response) => {
-  const user = request.body
+  const {name, age, email, phone} = request.body
 
-  users.push(user)
+  const query = `INSERT INTO users (name, age, email, phone) VALUES ('${name}', ${age}, '${email}', '${phone}')`
+
+  connection.query(query, error => {
+      if (error) {
+          console.log(error)
+      }
+  })
 
   response.redirect('/')
 })

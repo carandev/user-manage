@@ -20,9 +20,12 @@ app.get('/', (request, response) => {
     if (error) {
       console.log(error)
     } else {
+      console.log(...results)
       users.push(...results)
     }
   })
+
+  console.log(users)
 
   response.render('index', { users })
 })

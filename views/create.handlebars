@@ -1,19 +1,79 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #223;
+        color: #eee;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 320px;
+        gap: 2rem;
+        margin: 0 auto;
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .lbl {
+        width: 90px;
+    }
+
+    input {
+        padding: .5rem 1rem;
+
+        color: #eee;
+
+        background-color: transparent;
+        border: 1px solid #5b5;
+        outline: none;
+    }
+
+    .btn {
+        padding: .5rem 2rem;
+
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+
+        color: #223;
+        text-transform: uppercase;
+        background-color: #5b5;
+    }
+</style>
+<h1>Crea un usuario</h1>
 <form action="/user/create" method="post">
-    <label>
-        Nombre
-        <input type="text" name="name">
-    </label>
-    <label>
-        Edad
-        <input type="number" name="age">
-    </label>
-    <label>
-        Telefono
-        <input type="number" name="phone">
-    </label>
-    <label>
-        Correo
-        <input type="email" name="email">
-    </label>
-    <button>Guardar</button>
+    <div class="input-container">
+        <label for="name" class="lbl">Nombre</label>
+        <input type="text" id="name" name="name">
+    </div>
+
+    <div class="input-container">
+        <label for="age" class="lbl">Edad</label>
+        <input type="number" id="age" name="age">
+    </div>
+
+    <div class="input-container">
+        <label for="phone" class="lbl">Teléfono</label>
+        <input type="number" id="phone" name="phone">
+    </div>
+
+    <div class="input-container">
+        <label for="email" class="lbl">Correo</label>
+        <input type="email" id="email" name="email">
+    </div>
+
+    <button class="btn">Guardar</button>
 </form>

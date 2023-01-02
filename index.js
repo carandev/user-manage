@@ -25,8 +25,6 @@ app.get('/', (request, response) => {
     }
   })
 
-  console.log(users)
-
   response.render('index', { users })
 })
 

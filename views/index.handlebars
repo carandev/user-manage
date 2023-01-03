@@ -89,11 +89,30 @@
             <h3>{{{name}}}</h3>
             <p>Hola tengo {{{age}}} años, mi correo es {{{email}}} y mi teléfono {{{phone}}}</p>
         </div>
-        <div class="buttons-container">
+        <form class="delete-form">
+            <input type="hidden" name="id" value="{{{id}}}">
             <button class="btn btn-delete">Eliminar</button>
-            <button class="btn btn-edit">Editar</button>
-        </div>
+        </form>
     </div>
     {{/each}}
     <a class="btn-add" href="/user/create">Añadir</a>
 </main>
+<script>
+    const deleteForms = document.getElementsByClassName('delete-form')
+
+    for (let i = 0; i < deleteForms.length; i++) {
+        deleteForms[i].addEventListener('submit', event => {
+            event.preventDefault()
+            const id = deleteForms[i][0].value
+
+            fetch(`/user/delete/${id}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.status === 200) {
+                    window.location.href = '/'
+                }
+            })
+
+        })
+    }
+</script>

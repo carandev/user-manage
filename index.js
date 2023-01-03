@@ -20,7 +20,6 @@ app.get('/', (request, response) => {
     if (error) {
       console.log(error)
     } else {
-      console.log(...results)
       users.push(...results)
     }
   })
@@ -44,6 +43,20 @@ app.post('/user/create', (request, response) => {
   })
 
   response.redirect('/')
+})
+
+app.delete('/user/delete/:id', (request, response) => {
+  const {id} = request.params
+
+  const query = `DELETE FROM users WHERE id = ${id}`
+
+  connection.query(query, error => {
+    if (error) {
+      console.log(error)
+    } 
+  })
+
+  response.sendStatus(200)
 })
 
 app.listen(3000, () => {
